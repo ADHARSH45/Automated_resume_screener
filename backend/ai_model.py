@@ -30,3 +30,4 @@ if __name__ == "__main__":
     resume_text = extract_text_from_pdf(pdf_path)
     score = calculate_similarity(resume_text, job_description)
     print(score)  # Output score for Node.js to capture
+    print(resume_text)
