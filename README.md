@@ -1,4 +1,4 @@
-# AI-Powered Resume Screening Tool
+# Automated Resume Screening Tool
 
 ## 📌 Overview
 This project is an **AI-powered Resume Screening Tool** built using the **MERN stack**. It helps job seekers evaluate how well their resumes match a given job description by calculating a similarity score.
