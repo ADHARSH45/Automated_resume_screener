@@ -63,7 +63,14 @@ router.post(
 
       const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-      res.json({ message: "Login successful", token });
+      res
+    .cookie("token", token, {
+      httpOnly: true,
+      secure: false, // Set to true in production (requires HTTPS)
+      sameSite: "lax",
+      maxAge: 3600000, // 1 hour
+    })
+    .json({ message: "Login successful" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Server error" });
