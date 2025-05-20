@@ -17,29 +17,39 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+
+const uploadFields = upload.fields([
+  { name: "resume", maxCount: 1 },
+  { name: "jobDesc", maxCount: 1 },
+]);
+
 // Upload Resume & Trigger AI Scoring
-router.post("/upload", upload.single("resume"), async (req, res) => {
+router.post("/upload", uploadFields, async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
+    const resumeFile = req.files["resume"] ? req.files["resume"][0] : null;
+    const jobDescFile = req.files["jobDesc"] ? req.files["jobDesc"][0] : null;
+
+    if (!resumeFile || !jobDescFile) {
+      return res.status(400).json({ error: "Both resume and job description files are required." });
     }
 
-    const filePath = req.file.path;
+    const resumePath = resumeFile.path;
+    const jobDescPath = jobDescFile.path;
 
-    // Call Python AI Model
-    const pythonProcess = spawn("python3", ["ai_model.py", filePath]);
+    // Pass both file paths to your Python script
+    const pythonProcess = spawn("python3", ["ai_model.py", resumePath, jobDescPath]);
 
     pythonProcess.stdout.on("data", async (data) => {
       const score = parseFloat(data.toString().trim());
 
       const newResume = new Resume({
-        filename: req.file.filename,
-        fileUrl: filePath,
+        filename: resumeFile.filename,
+        fileUrl: resumePath,
         score: score,
       });
 
       await newResume.save();
-      res.json({ message: "Resume uploaded & scored", score });
+      res.json({ message: "Files uploaded & scored", score });
     });
 
     pythonProcess.stderr.on("data", (error) => {
