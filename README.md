@@ -110,6 +110,6 @@ Contributions are welcome! Feel free to open an **issue** or submit a **pull req
 
 ### 📩 Connect with Me
 If you have any questions or suggestions, feel free to reach out!
-📧 Email: your-email@example.com  
-💻 GitHub: [your-username](https://github.com/your-username)
+📧 Email: adharshmv70@gmail.com  
+💻 GitHub: [ADHARSH45](https://github.com/ADHARSH45)
 
