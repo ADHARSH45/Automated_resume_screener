@@ -1,7 +1,7 @@
 # Automated Resume Screening Tool
 
 ## 📌 Overview
-This project is an **AI-powered Resume Screening Tool** built using the **MERN stack**. It helps job seekers evaluate how well their resumes match a given job description by calculating a similarity score.
+This project is an **Automated Resume Screening Tool** built using the **MERN stack**. It helps job seekers evaluate how well their resumes match a given job description by calculating a similarity score.
 
 ## 🚀 Features
 - 📄 **Resume Upload**: Users can upload their resume in **PDF format**.
